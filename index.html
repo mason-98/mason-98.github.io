@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smart Mirror</title>
+<meta name="description" content="Smart Mirror: a personal Raspberry Pi mirror that shows the owner's own Pinterest boards as a mood board.">
+<style>
+:root{--bg:#fbfaf8;--fg:#1d1d1f;--muted:#5c5c63;--line:#e3e1dc;--card:#fff;--accent:#7a4e2d}
+@media (prefers-color-scheme:dark){:root{--bg:#121214;--fg:#ececee;--muted:#a3a3ab;--line:#2a2a2e;--card:#1a1a1d;--accent:#e0a878}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:760px;margin:0 auto;padding:40px 20px 64px}nav{display:flex;gap:20px;font-size:15px;margin-bottom:32px}
+a{color:var(--accent)}h1{font-size:34px;line-height:1.2;margin:0 0 8px}h2{font-size:22px;margin:36px 0 8px}
+.lede{color:var(--muted);font-size:19px;margin:0 0 24px}figure{margin:24px 0}figure img{width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+figcaption{color:var(--muted);font-size:14px;margin-top:6px}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media (max-width:600px){.two{grid-template-columns:1fr}}
+code{font-size:15px}footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+</style></head>
+<body><main>
+<nav><a href="./">Home</a><a href="privacy.html">Privacy policy</a></nav>
+<h1>Smart Mirror</h1>
+<p class="lede">A personal, non-commercial project by Mason (<a href="https://github.com/mason-98">mason-98 on GitHub</a>): an old fitness mirror rebuilt around a Raspberry Pi, so it shows the time, weather, calendar, to-do list and a Pinterest mood board in the bedroom.</p>
+
+<figure><img src="images/mockup-home.png" alt="The mirror's home screen with time, weather, calendar, to-do list and a mood board of pins"><figcaption>The mirror's home screen. The mood board sits in the middle.</figcaption></figure>
+
+<h2>How it uses Pinterest</h2>
+<p>The mood board shows pins from my own Pinterest boards on the mirror. It is used by one person, me, on my own account. It is not offered to anyone else and has no other users.</p>
+<ul>
+<li><b>Sign-in:</b> I sign in once with Pinterest's own OAuth page. The mirror never sees my password.</li>
+<li><b>Read-only:</b> it asks for <code>boards:read</code>, <code>pins:read</code>, <code>boards:read_secret</code> and <code>pins:read_secret</code>, and only lists my boards and reads the pins on them. It never creates, edits, saves or deletes anything on Pinterest.</li>
+<li><b>Once a night:</b> at 4 AM it downloads the pins on the boards I picked, as small copies about 600 px wide, so the mirror can show them without loading pinterest.com.</li>
+<li><b>Stays at home:</b> the pictures and the sign-in tokens are kept only on the Raspberry Pi in my house. They aren't sent to any other service, sold or shared.</li>
+</ul>
+
+<div class="two">
+<figure><img src="images/moodboard-flow.png" alt="Diagram of the nightly download: list boards, read pins, download small pictures, show them on the mirror"><figcaption>The nightly download.</figcaption></figure>
+<figure><img src="images/moodboard-signin.png" alt="The mirror's mood board before signing in, with a Sign in to Pinterest button"><figcaption>The mood board before sign-in.</figcaption></figure>
+</div>
+
+<h2>Contact</h2>
+<p>Mason, Greater Toronto Area, Canada. Reach me through <a href="https://github.com/mason-98">github.com/mason-98</a>.</p>
+
+<footer>Smart Mirror is a personal project and is not affiliated with or endorsed by Pinterest. · <a href="privacy.html">Privacy policy</a></footer>
+</main></body></html>

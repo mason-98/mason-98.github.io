@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smart Mirror privacy policy</title>
+<style>
+:root{--bg:#fbfaf8;--fg:#1d1d1f;--muted:#5c5c63;--line:#e3e1dc;--card:#fff;--accent:#7a4e2d}
+@media (prefers-color-scheme:dark){:root{--bg:#121214;--fg:#ececee;--muted:#a3a3ab;--line:#2a2a2e;--card:#1a1a1d;--accent:#e0a878}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:760px;margin:0 auto;padding:40px 20px 64px}nav{display:flex;gap:20px;font-size:15px;margin-bottom:32px}
+a{color:var(--accent)}h1{font-size:34px;line-height:1.2;margin:0 0 8px}h2{font-size:22px;margin:36px 0 8px}
+.lede{color:var(--muted);font-size:19px;margin:0 0 24px}figure{margin:24px 0}figure img{width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+figcaption{color:var(--muted);font-size:14px;margin-top:6px}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media (max-width:600px){.two{grid-template-columns:1fr}}
+code{font-size:15px}footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+</style></head>
+<body><main>
+<nav><a href="./">Home</a><a href="privacy.html">Privacy policy</a></nav>
+<h1>Privacy policy</h1>
+<p>Last updated: October 25, 2026</p>
+<p>Smart Mirror is a personal, open-source project. It runs on one Raspberry Pi inside one person's mirror at home, and that person (the owner) is its only user. There is no company, no server of ours, no account system and no analytics. Nothing is sold or shared with anyone.</p>
+<h2>Pinterest</h2>
+<p>The mood board uses the Pinterest API with the owner's own developer app and the owner's own Pinterest account.</p>
+<ul>
+<li><b>Read-only.</b> It asks for <code>boards:read</code>, <code>pins:read</code>, <code>boards:read_secret</code> and <code>pins:read_secret</code>, and only reads the owner's boards and pins. It never creates, edits or deletes anything on Pinterest.</li>
+<li><b>What it keeps.</b> Once a night it downloads the pins on the boards the owner picked: a smaller copy of each picture (about 600 px wide) and the list of pins. These are saved only on the Pi, in a <code>pins</code> folder next to <code>state.db</code>, and pins that are no longer on those boards are deleted at the next download.</li>
+<li><b>Where it goes.</b> Nowhere. Pinterest data is shown on the mirror and isn't sent to any other service, including the AI providers below.</li>
+<li><b>Sign-in tokens.</b> Access and refresh tokens are stored only on the Pi, in <code>keys.env</code> and in <code>pinterest-token.json</code> (readable only by the mirror). They never appear on the page, in logs or in the cache.</li>
+</ul>
+<h2>Other data</h2>
+<ul>
+<li><b>Calendar, to-do list and settings</b> are stored on the Pi. Calendars are read from the links the owner added, and the weather comes from Open-Meteo using the mirror's configured location.</li>
+<li><b>Voice.</b> After the wake word, what the owner says is sent to the speech-to-text and AI providers the owner set up (for example Anthropic, OpenAI or Google) to understand it and write a reply, and replies may be spoken by a cloud voice. Those requests follow each provider's own privacy policy.</li>
+<li><b>Period and cycle data never leaves the Pi.</b> The logged dates and predictions are stored only on the Pi, are never included in requests to AI providers, and are read aloud only with an offline voice on the Pi. Calendar and to-do readouts use the offline voice too. (Like any voice command, the spoken words of a command such as logging a period still pass through speech-to-text.)</li>
+<li><b>API keys</b> are stored only on the Pi, in <code>keys.env</code>.</li>
+</ul>
+<h2>Deleting your data</h2>
+<ul>
+<li>Delete the <code>pins</code> folder (and <code>pinterest-token.json</code>) next to <code>state.db</code> to remove everything downloaded from Pinterest. Deleting the whole state folder removes all of the mirror's data.</li>
+<li>Remove the <code>PINTEREST_*</code> lines from <code>keys.env</code> to stop the mirror fetching anything.</li>
+<li>Revoke the app's access in Pinterest under <b>Settings &gt; Security and logins &gt; Apps</b>.</li>
+</ul>
+<h2>Contact</h2>
+<p>Questions about this policy: contact Mason through <a href="https://github.com/mason-98">github.com/mason-98</a>.</p><footer>Smart Mirror is a personal project and is not affiliated with or endorsed by Pinterest.</footer>
+</main></body></html>
